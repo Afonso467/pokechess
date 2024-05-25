@@ -14,28 +14,24 @@
             background-color: #f0f0f0;
         }
 
-        #chessboard {
+        .chess-board {
             display: grid;
-            grid-template-columns: repeat(8, 60px);
-            grid-template-rows: repeat(8, 60px);
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
             gap: 0;
-            border: 2px solid #333;
         }
 
-        .square {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .cell {
+            width: 50px;
+            height: 50px;
         }
 
-        .square:nth-child(even) {
-            background-color: #f0d9b5;
+        .black {
+            background-color: #000;
         }
 
-        .square:nth-child(odd) {
-            background-color: #b58863;
+        .white {
+            background-color: #fff;
         }
 
         .piece {
@@ -45,10 +41,14 @@
             background-size: cover;
             background-position: center;
         }
+
+        .row {
+            display: contents;
+        }
     </style>
 </head>
 <body>
-    <div id="chessboard"></div>
+    <div class="chess-board" id="chessboard"></div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const board = document.getElementById('chessboard');
@@ -96,9 +96,10 @@
             let selectedPiece = null;
 
             initialBoard.forEach((row, rowIndex) => {
-                [...row].forEach((cell, colIndex) => {
+                row.split('').forEach((cell, colIndex) => {
                     const square = document.createElement('div');
-                    square.classList.add('square');
+                    square.classList.add('cell');
+                    square.classList.add((rowIndex + colIndex) % 2 === 0 ? 'white' : 'black');
                     square.dataset.row = rowIndex;
                     square.dataset.col = colIndex;
                     if (pieceImages[cell]) {
@@ -120,7 +121,7 @@
                     }
                     selectedPiece = target;
                     selectedPiece.classList.add('selected');
-                } else if (selectedPiece && target.classList.contains('square')) {
+                } else if (selectedPiece && target.classList.contains('cell')) {
                     const pieceType = selectedPiece.dataset.piece;
                     target.appendChild(selectedPiece);
                     selectedPiece.classList.remove('selected');
