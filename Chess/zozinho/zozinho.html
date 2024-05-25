@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Chess Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            gap: 0;
+            border: 2px solid #333;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .square:nth-child(even) {
+            background-color: #f0d9b5;
+        }
+
+        .square:nth-child(odd) {
+            background-color: #b58863;
+        }
+
+        .piece {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="chessboard"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const board = document.getElementById('chessboard');
+            const pieceImages = {
+                'r': 'images/rook_black.png', 
+                'n': 'images/knight_black.png', 
+                'b': 'images/bishop_black.png', 
+                'q': 'images/queen_black.png', 
+                'k': 'images/king_black.png', 
+                'p': 'images/pawn_black.png',
+                'R': 'images/rook_white.png', 
+                'N': 'images/knight_white.png', 
+                'B': 'images/bishop_white.png', 
+                'Q': 'images/queen_white.png', 
+                'K': 'images/king_white.png', 
+                'P': 'images/pawn_white.png'
+            };
+
+            const pieceSounds = {
+                'r': 'sounds/rook.mp3', 
+                'n': 'sounds/knight.mp3', 
+                'b': 'sounds/bishop.mp3', 
+                'q': 'sounds/queen.mp3', 
+                'k': 'sounds/king.mp3', 
+                'p': 'sounds/pawn.mp3',
+                'R': 'sounds/rook.mp3', 
+                'N': 'sounds/knight.mp3', 
+                'B': 'sounds/bishop.mp3', 
+                'Q': 'sounds/queen.mp3', 
+                'K': 'sounds/king.mp3', 
+                'P': 'sounds/pawn.mp3'
+            };
+
+            const initialBoard = [
+                'rnbqkbnr',
+                'pppppppp',
+                '........',
+                '........',
+                '........',
+                '........',
+                'PPPPPPPP',
+                'RNBQKBNR'
+            ];
+
+            let selectedPiece = null;
+
+            initialBoard.forEach((row, rowIndex) => {
+                [...row].forEach((cell, colIndex) => {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.dataset.row = rowIndex;
+                    square.dataset.col = colIndex;
+                    if (pieceImages[cell]) {
+                        const piece = document.createElement('div');
+                        piece.classList.add('piece');
+                        piece.style.backgroundImage = `url(${pieceImages[cell]})`;
+                        piece.dataset.piece = cell;
+                        square.appendChild(piece);
+                    }
+                    board.appendChild(square);
+                });
+            });
+
+            board.addEventListener('click', (e) => {
+                const target = e.target;
+                if (target.classList.contains('piece')) {
+                    if (selectedPiece) {
+                        selectedPiece.classList.remove('selected');
+                    }
+                    selectedPiece = target;
+                    selectedPiece.classList.add('selected');
+                } else if (selectedPiece && target.classList.contains('square')) {
+                    const pieceType = selectedPiece.dataset.piece;
+                    target.appendChild(selectedPiece);
+                    selectedPiece.classList.remove('selected');
+                    playSound(pieceType);
+                    selectedPiece = null;
+                }
+            });
+
+            function playSound(pieceType) {
+                let sound = new Audio(pieceSounds[pieceType]);
+                sound.play();
+            }
+        });
+    </script>
+</body>
+</html>
