@@ -1,23 +1,19 @@
 // Inserting the images
 function insertImage() {
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach(image => {
+    document.querySelectorAll('.box').forEach(image => {
         if (image.innerText.length !== 0) {
-            if (image.innerText === 'Bpawn' || image.innerText === 'Wpawn') {
-                image.innerHTML = `<img class='all-img all-pawn' src='images/${image.innerText}.png' alt=''>`;
+            if (image.innerText == 'Wpawn' || image.innerText == 'Bpawn') {
+                image.innerHTML = `${image.innerText} <img class='all-img all-pawn' 
+                src="images/${image.innerText}.png" alt="">`;
+                image.style.cursor = 'pointer'
             } else {
-                image.innerHTML = `<img class='all-img' src='images/${image.innerText}.png' alt=''>`;
+                image.innerHTML = `${image.innerText} <img class='all-img' src="${image.innerText}.png" alt="">`
+                image.style.cursor = 'pointer'
             }
-            image.style.cursor = 'pointer';
-        } else {
-            console.log('No innerText found for element:', image);
         }
-    });
+    })
 }
-
-// Chame a função para inserir as imagens
-insertImage();
-
+insertImage()
 
 //Coloring the board
 
