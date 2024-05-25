@@ -1,65 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Xadrez</title>
+  <link rel="stylesheet" href="./style.css">
 
-<body onload="inicia_jogo();">
-    <div id="fundo"></div>
-    <div id="escolhecor-inicio" class="escolhe" >
-        <div onclick="escolhecor_incio('branco');">&#9812;</div>
-           <div onclick="escolhecor_incio('preto');">&#9818;</div>
+</head>
+<body>
+  <div class="container">
+  <h1>Master Chess</h1>
+  <ul>
+    <div class="div" id="row8">
+        <li class="box" id="b801"></li>
+        <li class="box" id="b802"></li>
+        <li class="box" id="b803"></li>
+        <li class="box" id="b804"></li>
+        <li class="box" id="b805"></li>
+        <li class="box" id="b806"></li>
+        <li class="box" id="b807"></li>
+        <li class="box" id="b808"></li>
     </div>
-    <div id="escolhebranco" class="escolhe">
-        <div onclick="escolhe('rainha','branco');">&#9813;</div>
-        <div onclick="escolhe('torre','branco');">&#9814;</div>
-        <div onclick="escolhe('cavalo','branco');">&#9816;</div>
-        <div onclick="escolhe('bispo','branco');">&#9815;</div>
+    <div class="div" id="row7">
+        <li class="box" id="b701"></li>
+        <li class="box" id="b702"></li>
+        <li class="box" id="b703"></li>
+        <li class="box" id="b704"></li>
+        <li class="box" id="b705"></li>
+        <li class="box" id="b706"></li>
+        <li class="box" id="b707"></li>
+        <li class="box" id="b708"></li>
     </div>
-    <div id="escolhepreto" class="escolhe">
-        <div onclick="escolhe('rainha','preto');">&#9819;</div>
-        <div onclick="escolhe('torre','preto');">&#9820;</div>
-        <div onclick="escolhe('cavalo','preto');">&#9822;</div>
-        <div onclick="escolhe('bispo','preto');">&#9821;</div>
+    <div class="div" id="row6">
+        <li class="box" id="b601"></li>
+        <li class="box" id="b602"></li>
+        <li class="box" id="b603"></li>
+        <li class="box" id="b604"></li>
+        <li class="box" id="b605"></li>
+        <li class="box" id="b606"></li>
+        <li class="box" id="b607"></li>
+        <li class="box" id="b608"></li>
     </div>
-    
-    <div id="tabuleiro">
-    <div id="t11" onclick="seleciona(1,1);"></div>	<div id="t12" onclick="seleciona(1,2);"></div>
-    <div id="t13" onclick="seleciona(1,3);"></div>	<div id="t14" onclick="seleciona(1,4);"></div>
-    <div id="t15" onclick="seleciona(1,5);"></div>	<div id="t16" onclick="seleciona(1,6);"></div>
-    <div id="t17" onclick="seleciona(1,7);"></div>	<div id="t18" onclick="seleciona(1,8);"></div>
-    
-    <div id="t21" onclick="seleciona(2,1);"></div>	<div id="t22" onclick="seleciona(2,2);"></div>
-    <div id="t23" onclick="seleciona(2,3);"></div>	<div id="t24" onclick="seleciona(2,4);"></div>
-    <div id="t25" onclick="seleciona(2,5);"></div>	<div id="t26" onclick="seleciona(2,6);"></div>
-    <div id="t27" onclick="seleciona(2,7);"></div>	<div id="t28" onclick="seleciona(2,8);"></div>
-    
-    <div id="t31" onclick="seleciona(3,1);"></div>	<div id="t32" onclick="seleciona(3,2);"></div>
-    <div id="t33" onclick="seleciona(3,3);"></div>	<div id="t34" onclick="seleciona(3,4);"></div>
-    <div id="t35" onclick="seleciona(3,5);"></div>	<div id="t36" onclick="seleciona(3,6);"></div>
-    <div id="t37" onclick="seleciona(3,7);"></div>	<div id="t38" onclick="seleciona(3,8);"></div>
-    
-    <div id="t41" onclick="seleciona(4,1);"></div>	<div id="t42" onclick="seleciona(4,2);"></div>
-    <div id="t43" onclick="seleciona(4,3);"></div>	<div id="t44" onclick="seleciona(4,4);"></div>
-    <div id="t45" onclick="seleciona(4,5);"></div>	<div id="t46" onclick="seleciona(4,6);"></div>
-    <div id="t47" onclick="seleciona(4,7);"></div>	<div id="t48" onclick="seleciona(4,8);"></div>
-    
-    <div id="t51" onclick="seleciona(5,1);"></div>	<div id="t52" onclick="seleciona(5,2);"></div>
-    <div id="t53" onclick="seleciona(5,3);"></div>	<div id="t54" onclick="seleciona(5,4);"></div>
-    <div id="t55" onclick="seleciona(5,5);"></div>	<div id="t56" onclick="seleciona(5,6);"></div>
-    <div id="t57" onclick="seleciona(5,7);"></div>	<div id="t58" onclick="seleciona(5,8);"></div>
-    
-    <div id="t61" onclick="seleciona(6,1);"></div>	<div id="t62" onclick="seleciona(6,2);"></div>
-    <div id="t63" onclick="seleciona(6,3);"></div>	<div id="t64" onclick="seleciona(6,4);"></div>
-    <div id="t65" onclick="seleciona(6,5);"></div>	<div id="t66" onclick="seleciona(6,6);"></div>
-    <div id="t67" onclick="seleciona(6,7);"></div>	<div id="t68" onclick="seleciona(6,8);"></div>
-    
-    <div id="t71" onclick="seleciona(7,1);"></div>	<div id="t72" onclick="seleciona(7,2);"></div>
-    <div id="t73" onclick="seleciona(7,3);"></div>	<div id="t74" onclick="seleciona(7,4);"></div>
-    <div id="t75" onclick="seleciona(7,5);"></div>	<div id="t76" onclick="seleciona(7,6);"></div>
-    <div id="t77" onclick="seleciona(7,7);"></div>	<div id="t78" onclick="seleciona(7,8);"></div>
-    
-    <div id="t81" onclick="seleciona(8,1);"></div>	<div id="t82" onclick="seleciona(8,2);"></div>
-    <div id="t83" onclick="seleciona(8,3);"></div>	<div id="t84" onclick="seleciona(8,4);"></div>
-    <div id="t85" onclick="seleciona(8,5);"></div>	<div id="t86" onclick="seleciona(8,6);"></div>
-    <div id="t87" onclick="seleciona(8,7);"></div>	<div id="t88" onclick="seleciona(8,8);"></div>
-    
+    <div class="div" id="row5">
+        <li class="box" id="b501"></li>
+        <li class="box" id="b502"></li>
+        <li class="box" id="b503"></li>
+        <li class="box" id="b504"></li>
+        <li class="box" id="b505"></li>
+        <li class="box" id="b506"></li>
+        <li class="box" id="b507"></li>
+        <li class="box" id="b508"></li>
     </div>
+    <div class="div" id="row4">
+        <li class="box" id="b401"></li>
+        <li class="box" id="b402"></li>
+        <li class="box" id="b403"></li>
+        <li class="box" id="b404"></li>
+        <li class="box" id="b405"></li>
+        <li class="box" id="b406"></li>
+        <li class="box" id="b407"></li>
+        <li class="box" id="b408"></li>
+    </div>
+    <div class="div" id="row3">
+        <li class="box" id="b301"></li>
+        <li class="box" id="b302"></li>
+        <li class="box" id="b303"></li>
+        <li class="box" id="b304"></li>
+        <li class="box" id="b305"></li>
+        <li class="box" id="b306"></li>
+        <li class="box" id="b307"></li>
+        <li class="box" id="b308"></li>
+    </div>
+    <div class="div" id="row2">
+        <li class="box" id="b201"></li>
+        <li class="box" id="b202"></li>
+        <li class="box" id="b203"></li>
+        <li class="box" id="b204"></li>
+        <li class="box" id="b205"></li>
+        <li class="box" id="b206"></li>
+        <li class="box" id="b207"></li>
+        <li class="box" id="b208"></li>
+    </div>
+    <div class="div" id="row1">
+        <li class="box" id="b101"></li>
+        <li class="box" id="b102"></li>
+        <li class="box" id="b103"></li>
+        <li class="box" id="b104"></li>
+        <li class="box" id="b105"></li>
+        <li class="box" id="b106"></li>
+        <li class="box" id="b107"></li>
+        <li class="box" id="b108"></li>
+    </div>
+  </ul>
+  <h2 id="tog">Vez do branco</h2>
+  <h2 id="reset-btn">Reset</h2>
+        </div>
     </body>
-    </html>
-    
+</html>
