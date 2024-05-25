@@ -42,8 +42,8 @@
             background-position: center;
         }
 
-        .row {
-            display: contents;
+        .selected {
+            border: 2px solid red;
         }
     </style>
 </head>
@@ -53,7 +53,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const board = document.getElementById('chessboard');
             const pieceImages = {
-                'r': 'images/rook_black.png', 
+                'r': 'ALGAS.jpg', 
                 'n': 'images/knight_black.png', 
                 'b': 'images/bishop_black.png', 
                 'q': 'images/queen_black.png', 
